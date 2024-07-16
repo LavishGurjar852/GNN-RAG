@@ -99,6 +99,7 @@ def eval_result(predict_file1, encrypt=False, cal_f1=True, topk = -1):
 
 
     input_file = os.path.join("rmanluo", "RoG-webqsp")
+    input_file = input_file.replace("\\", "/")
     rule_postfix = "no_rule"
     # Load dataset
     dataset = load_dataset(input_file, split="test")
