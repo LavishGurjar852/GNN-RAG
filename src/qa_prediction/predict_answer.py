@@ -1,6 +1,6 @@
 import sys
 import os
-
+import gdown
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + "/..")
 import utils
 import argparse
@@ -15,6 +15,22 @@ from qa_prediction.build_qa_input import PromptBuilder
 from functools import partial
 
 import json
+
+
+def download_file_from_drive(url, output):
+    gdown.download(url, output, quiet=False)
+
+
+target_directory = "src/qa_prediction"
+os.makedirs(target_directory, exist_ok=True)  # Create directory if it does not exist
+
+# Define the file URL and path
+test_json_url = "https://drive.google.com/uc?id=1HbyzITFZqT_b2su3rS2EJCd-XivRkUZy"
+test_json_path = os.path.join(target_directory, "test.json")  # Combine directory and filename
+
+# Download the file from Google Drive
+download_file_from_drive(test_json_url, test_json_path)
+
 
 with open('entities_names.json') as f:
     entities_names = json.load(f)
@@ -44,7 +60,7 @@ def load_gnn_rag(g_data_file, g_data_file2=None):
     data_file_d = {}
     data_file_gnn = {}
 
-    data_file = os.path.dirname(g_data_file) + "/test.json"
+    data_file = test_json_path
     with open(data_file) as f_in, open(g_data_file) as fg:
         for line, lineg in (zip(f_in, fg)):
             line = json.loads(line)
@@ -54,7 +70,7 @@ def load_gnn_rag(g_data_file, g_data_file2=None):
             data_file_gnn[line["id"]] = lineg
         print("ok1")
     if g_data_file2 is not None:
-        data_file = os.path.dirname(g_data_file2) + "/test.json"
+        data_file = test_json_path
         with open(data_file) as f_in, open(g_data_file2) as fg:
             for line, lineg in (zip(f_in, fg)):
                 line = json.loads(line)
