@@ -1,3 +1,6 @@
+This github consist of GNN folder and the remaining are the parts of another folder LLM .
+This is readme file for LLM.
+The other file README_main.md will be the guiding file.
 
 ## Evaluation
 We provide the results of GNN retrieval in `results/gnn`. To evaluate GNN-RAG performance, run `scripts/rag-reasoning.sh`. 
