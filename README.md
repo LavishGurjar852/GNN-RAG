@@ -1,6 +1,8 @@
 
 ## Evaluation
 We provide the results of GNN retrieval in `results/gnn`. To evaluate GNN-RAG performance, run `scripts/rag-reasoning.sh`. 
+You can also compute perfromance on multi-hop question by `scripts/evaluate_multi_hop.sh`. 
+
 
 ## Resutls
 
